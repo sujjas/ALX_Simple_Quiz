@@ -1,32 +1,33 @@
-// Function to handle the quiz submission
-function handleQuizSubmit() {
-    // Get the user's selected answer
+// quiz.js
+
+// Define the correct answer
+const correctAnswer = "4";
+
+// Function to check the answer
+function checkAnswer() {
+    // Retrieve the user's selected answer
     const selectedOption = document.querySelector('input[name="quiz"]:checked');
 
-    // Get the feedback element
-    const feedbackElement = document.getElementById('feedback');
+    // Retrieve the feedback element
+    const feedbackElement = document.getElementById("feedback");
 
-    // Check if an option is selected
-    if (selectedOption) {
-        // Get the value of the selected option
-        const userAnswer = selectedOption.value;
-
-        // Correct answer
-        const correctAnswer = "4";
-
-        // Check if the user's answer is correct
-        if (userAnswer === correctAnswer) {
-            feedbackElement.textContent = "Correct! Well done.";
-            feedbackElement.style.color = "green";
-        } else {
-            feedbackElement.textContent = "Incorrect. The correct answer is 4.";
-            feedbackElement.style.color = "red";
-        }
-    } else {
+    // Check if an option was selected
+    if (!selectedOption) {
         feedbackElement.textContent = "Please select an answer.";
-        feedbackElement.style.color = "orange";
+        return;
+    }
+
+    // Retrieve the user's selected answer
+    const userAnswer = selectedOption.value;
+
+    // Compare the user's answer with the correct answer
+    if (userAnswer === correctAnswer) {
+        feedbackElement.textContent = "Correct! Well done.";
+    } else {
+        feedbackElement.textContent = "Incorrect. The correct answer is 4.";
     }
 }
 
-// Attach event listener to the submit button
-document.getElementById('submit-answer').addEventListener('click', handleQuizSubmit);
+// Add an event listener to the "Submit Answer" button
+const submitButton = document.getElementById("submit-answer");
+submitButton.addEventListener("click", checkAnswer);
