@@ -1,30 +1,22 @@
-// quiz.js
-
-// Define the correct answer
-const correctAnswer = "4";
-
-// Function to check the answer
+// Define the checkAnswer function
 function checkAnswer() {
+    // Declare the correct answer
+    const correctAnswer = "4";
+
     // Retrieve the user's selected answer
     const selectedOption = document.querySelector('input[name="quiz"]:checked');
 
+    // Access the value of the selected radio button
+    const userAnswer = selectedOption ? selectedOption.value : null;
+
     // Retrieve the feedback element
     const feedbackElement = document.getElementById("feedback");
-
-    // Check if an option was selected
-    if (!selectedOption) {
-        feedbackElement.textContent = "Please select an answer.";
-        return;
-    }
-
-    // Retrieve the user's selected answer
-    const userAnswer = selectedOption.value;
 
     // Compare the user's answer with the correct answer
     if (userAnswer === correctAnswer) {
         feedbackElement.textContent = "Correct! Well done.";
     } else {
-        feedbackElement.textContent = "Incorrect. The correct answer is 4.";
+        feedbackElement.textContent = "That's incorrect. Try again!";
     }
 }
 
